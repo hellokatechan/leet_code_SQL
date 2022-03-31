@@ -78,8 +78,8 @@ GROUP BY num
 HAVING count(num) = 1
 ORDER BY num DESC LIMIT 1; 
 
---
--- 
+-- Question 620 
+-- https://leetcode.com/problems/not-boring-movies/
 DROP TABLE IF EXISTS leetcode_620; 
 CREATE TABLE leetcode_620(
 id INT(2),
@@ -98,4 +98,66 @@ FROM leetcode_620
 WHERE id IN (SELECT id FROM leetcode_620 WHERE id%2)
 AND description NOT IN ('boring')
 ORDER BY rating DESC;
+
+-- !!!!!!!!!
+
+
+-- Question 1050 
+-- https://leetcode.com/problems/actors-and-directors-who-cooperated-at-least-three-times/
+DROP TABLE IF EXISTS ActorDirector;
+CREATE TABLE ActorDirector(
+actor_id int, 
+director_id int, 
+timestamp int);
+insert into ActorDirector (actor_id, director_id, timestamp) values ('1', '1', '0');
+insert into ActorDirector (actor_id, director_id, timestamp) values ('1', '1', '1');
+insert into ActorDirector (actor_id, director_id, timestamp) values ('1', '1', '2');
+insert into ActorDirector (actor_id, director_id, timestamp) values ('1', '2', '3');
+insert into ActorDirector (actor_id, director_id, timestamp) values ('1', '2', '4');
+insert into ActorDirector (actor_id, director_id, timestamp) values ('2', '1', '5');
+insert into ActorDirector (actor_id, director_id, timestamp) values ('2', '1', '6');
+
+SELECT * 
+FROM ActorDirector;
+
+SELECT actor_id, director_id
+FROM ActorDirector
+WHERE COUNT(DISTINCT actor_id, director_id) >=3;
+
+-- !!!!!!!
+
+-- Question 1069
+-- https://circlecoder.com/product-sales-analysis-II/
+-- Write an SQL query that reports the total quantity sold for every product id.
+DROP TABLE IF EXISTS sales;
+CREATE TABLE sales(
+sale_id int, 
+product_id int, 
+year int, 
+quantity int,
+price int
+);
+insert into sales (sale_id, product_id, year, quantity, price) values ('1', '100','2008','10','5000');
+insert into sales (sale_id, product_id, year, quantity, price) values ('2', '100','2009','12','5000');
+insert into sales (sale_id, product_id, year, quantity, price) values ('7', '200','2011','15','9000');
+
+DROP TABLE IF EXISTS product;
+CREATE TABLE product(
+product_id int, 
+product_name VARCHAR(100)
+);
+insert into product (product_id, product_name) values ('100','Nokia');
+insert into product (product_id, product_name) values ('200','Apple');
+insert into product (product_id, product_name) values ('300','Samsung');
+
+SELECT sales.product_id, SUM(quantity)
+FROM sales
+LEFT JOIN product ON sales.product_id = product.product_id
+GROUP BY sales.product_id;
+
+-- Question 1076 
+
+
+
+
 
