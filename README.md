@@ -10,3 +10,7 @@
 | 596 | [Classes More Than 5 Students](https://leetcode.com/problems/classes-more-than-5-students/)| Easy | 
 | 619 | [Biggest Single Number](https://code.dennyzhang.com/biggest-single-number)| Easy |
 | 620| [Not Boring Movies](https://leetcode.com/problems/not-boring-movies/) | Easy |
+|1050| [Actors and Directors Who Cooperated At Least Three Times](https://leetcode.com/problems/actors-and-directors-who-cooperated-at-least-three-times/)| !!! |
+|1069| [Product Sales Analysis II](https://circlecoder.com/product-sales-analysis-II/)|Easy|
+|1076|[Project Employees II](https://xingxingpark.com/Leetcode-1076-Project-Employees-II/)|Easy|
+
