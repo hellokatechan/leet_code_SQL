@@ -248,4 +248,97 @@ HAVING SUM(price) = (SELECT SUM(price)
                     ORDER BY SUM(price) DESC
                     LIMIT 1);
                     
--- test
+-- Question 1141
+-- https://leetcode.com/problems/user-activity-for-the-past-30-days-i/
+-- Write an SQL query to find the daily active user count for a period of 30 days ending 2019-07-27 inclusively.
+-- A user was active on someday if they made at least one activity on that day.
+DROP TABLE IF EXISTS Activity;
+Create table Activity(
+user_id int, 
+session_id int, activity_date date, 
+activity_type ENUM('open_session', 'end_session', 'scroll_down', 'send_message'));
+
+insert into Activity (user_id, session_id, activity_date, activity_type) values ('1', '1', '2019-07-20', 'open_session');
+insert into Activity (user_id, session_id, activity_date, activity_type) values ('1', '1', '2019-07-20', 'scroll_down');
+insert into Activity (user_id, session_id, activity_date, activity_type) values ('1', '1', '2019-07-20', 'end_session');
+insert into Activity (user_id, session_id, activity_date, activity_type) values ('2', '4', '2019-07-20', 'open_session');
+insert into Activity (user_id, session_id, activity_date, activity_type) values ('2', '4', '2019-07-21', 'send_message');
+insert into Activity (user_id, session_id, activity_date, activity_type) values ('2', '4', '2019-07-21', 'end_session');
+insert into Activity (user_id, session_id, activity_date, activity_type) values ('3', '2', '2019-07-21', 'open_session');
+insert into Activity (user_id, session_id, activity_date, activity_type) values ('3', '2', '2019-07-21', 'send_message');
+insert into Activity (user_id, session_id, activity_date, activity_type) values ('3', '2', '2019-07-21', 'end_session');
+insert into Activity (user_id, session_id, activity_date, activity_type) values ('4', '3', '2019-06-25', 'open_session');
+insert into Activity (user_id, session_id, activity_date, activity_type) values ('4', '3', '2019-06-25', 'end_session');
+
+SELECT activity_date AS day, COUNT(DISTINCT user_id) AS active_users
+FROM Activity
+WHERE activity_date > '2019-06-27' AND activity_date < '2019-07-27'
+GROUP BY day;
+
+-- Question 1148
+-- https://leetcode.com/problems/article-views-i/
+-- Each row of this table indicates that some viewer viewed an article (written by some author) on some date. 
+-- Note that equal author_id and viewer_id indicate the same person.
+-- Write an SQL query to find all the authors that viewed at least one of their own articles.
+-- Return the result table sorted by id in ascending order.
+
+DROP TABLE IF EXISTS Views;
+Create table Views (
+article_id int, 
+author_id int, 
+viewer_id int, 
+view_date date);
+insert into Views (article_id, author_id, viewer_id, view_date) values ('1', '3', '5', '2019-08-01');
+insert into Views (article_id, author_id, viewer_id, view_date) values ('1', '3', '6', '2019-08-02');
+insert into Views (article_id, author_id, viewer_id, view_date) values ('2', '7', '7', '2019-08-01');
+insert into Views (article_id, author_id, viewer_id, view_date) values ('2', '7', '6', '2019-08-02');
+insert into Views (article_id, author_id, viewer_id, view_date) values ('4', '7', '1', '2019-07-22');
+insert into Views (article_id, author_id, viewer_id, view_date) values ('3', '4', '4', '2019-07-21');
+insert into Views (article_id, author_id, viewer_id, view_date) values ('3', '4', '4', '2019-07-21');
+
+SELECT author_id AS id
+FROM Views
+GROUP BY author_id
+HAVING author_id IN (SELECT viewer_id FROM Views WHERE viewer_id = author_id)
+ORDER BY author_id;
+
+-- Question 175
+-- https://leetcode.com/problems/combine-two-tables/
+-- Write an SQL query to report the first name, last name, city, and state of each person in the Person table. 
+Create table If Not Exists Person (
+personId int, 
+firstName varchar(255), 
+lastName varchar(255));
+
+Create table If Not Exists Address (
+addressId int, 
+personId int, 
+city varchar(255), 
+state varchar(255));
+
+
+insert into Person (personId, lastName, firstName) values ('1', 'Wang', 'Allen');
+insert into Person (personId, lastName, firstName) values ('2', 'Alice', 'Bob');
+
+insert into Address (addressId, personId, city, state) values ('1', '2', 'New York City', 'New York');
+insert into Address (addressId, personId, city, state) values ('2', '3', 'Leetcode', 'California');
+
+SELECT firstName,lastName, city, state
+FROM Person 
+LEFT JOIN Address ON Person.personID = Address.personID;
+
+-- Question 181
+-- https://leetcode.com/problems/employees-earning-more-than-their-managers/
+
+DROP TABLE IF EXISTS Employee;
+Create table If Not Exists Employee (
+id int, 
+name varchar(255), 
+salary int,
+managerId VARCHAR(50));
+insert into Employee (id, name, salary, managerId) values ('1', 'Joe', '70000', '3');
+insert into Employee (id, name, salary, managerId) values ('2', 'Henry', '80000', '4');
+insert into Employee (id, name, salary, managerId) values ('3', 'Sam', '60000', 'None');
+insert into Employee (id, name, salary, managerId) values ('4', 'Max', '90000', 'None');
+
+-- conti 
