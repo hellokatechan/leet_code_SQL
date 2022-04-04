@@ -13,16 +13,14 @@
 |1050| [Actors and Directors Who Cooperated At Least Three Times](https://leetcode.com/problems/actors-and-directors-who-cooperated-at-least-three-times/)| !!! |
 |1069| [Product Sales Analysis II](https://circlecoder.com/product-sales-analysis-II/)|Easy|
 |1076|[Project Employees II](https://xingxingpark.com/Leetcode-1076-Project-Employees-II/)|Easy|
-<<<<<<< HEAD
-| 1082 | Sales Analysis I | (https://ladychili.top/leetcode/sql/1082.SalesAnalysisI.html) | Easy |
-| 1141 | User Activity for the Past 30 Days I | (https://leetcode.com/problems/user-activity-for-the-past-30-days-i/)| Easy |
-| 1148| Article Views I | (https://leetcode.com/problems/article-views-i/) | Easy | 
-| 175 | Combine Two Tables| (https://leetcode.com/problems/combine-two-tables/)| Easy |
-| 181 | Employees Earning More Than Their Managers | (https://leetcode.com/problems/employees-earning-more-than-their-managers/)|Easy|
-=======
+| 1082 | [Sales Analysis I](https://ladychili.top/leetcode/sql/1082.SalesAnalysisI.html) | Easy |
+| 1141 | [User Activity for the Past 30 Days I](https://leetcode.com/problems/user-activity-for-the-past-30-days-i/)| Easy |
+| 1148| [Article Views I](https://leetcode.com/problems/article-views-i/) | Easy | 
+| 175 | [Combine Two Tables](https://leetcode.com/problems/combine-two-tables/)| Easy |
+| 181 | [Employees Earning More Than Their Managers](https://leetcode.com/problems/employees-earning-more-than-their-managers/)|Easy|
 | 1082 | [Sales Analysis I](https://ladychili.top/leetcode/sql/1082.SalesAnalysisI.html) | Easy |
 | 1141 | [User Activity for the Past 30 Days I](https://leetcode.com/problems/user-activity-for-the-past-30-days-i/)| Easy |
 | 1148| [Article Views I ](https://leetcode.com/problems/article-views-i/) | Easy | 
 | 175 | [Combine Two Tables](https://leetcode.com/problems/combine-two-tables/)| Easy |
 | 181 | [Employees Earning More Than Their Managers](https://leetcode.com/problems/employees-earning-more-than-their-managers/)|Easy|
->>>>>>> 396a5a5ccdf37c340235ddcac8ae558c84378bb8
+
