@@ -341,4 +341,8 @@ insert into Employee (id, name, salary, managerId) values ('2', 'Henry', '80000'
 insert into Employee (id, name, salary, managerId) values ('3', 'Sam', '60000', 'None');
 insert into Employee (id, name, salary, managerId) values ('4', 'Max', '90000', 'None');
 
--- conti 
+SELECT E1.name
+FROM Employee E1 
+JOIN Employee E2 ON E1.managerID=E2.id
+WHERE E2.salary < E1.salary;
+
