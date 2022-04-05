@@ -23,4 +23,6 @@
 | 1148| [Article Views I ](https://leetcode.com/problems/article-views-i/) | Easy | 
 | 175 | [Combine Two Tables](https://leetcode.com/problems/combine-two-tables/)| Easy |
 | 181 | [Employees Earning More Than Their Managers](https://leetcode.com/problems/employees-earning-more-than-their-managers/)|Easy|
+| 183 | [Customers Who Never Order](https://leetcode.com/problems/customers-who-never-order/)| Easy|
+| 197 | [Rising Temperature](https://leetcode.com/problems/rising-temperature/)|Easy|
 
