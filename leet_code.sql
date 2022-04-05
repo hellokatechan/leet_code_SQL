@@ -1,3 +1,5 @@
+-- https://www.youtube.com/watch?v=2vrJ9UxxAGE&ab_channel=lifemichael
+
 -- Question 182
 -- https://leetcode.com/problems/duplicate-emails/
 SELECT email
@@ -346,4 +348,49 @@ FROM Employee E1
 JOIN Employee E2 ON E1.managerID=E2.id
 WHERE E2.salary < E1.salary;
 
--- test
+-- Question 183
+-- https://leetcode.com/problems/customers-who-never-order/
+DROP TABLE IF EXISTS Customers;
+Create table Customers (
+id int, 
+name varchar(255));
+
+DROP TABLE IF EXISTS Orders;
+CREATE TABLE Orders(
+id int, 
+customerId int);
+
+insert into Customers (id, name) values ('1', 'Joe');
+insert into Customers (id, name) values ('2', 'Henry');
+insert into Customers (id, name) values ('3', 'Sam');
+insert into Customers (id, name) values ('4', 'Max');
+
+insert into Orders (id, customerId) values ('1', '3');
+insert into Orders (id, customerId) values ('2', '1');
+
+SELECT name FROM Customers
+LEFT JOIN Orders ON Customers.id = Orders.customerid 
+  WHERE NOT EXISTS (SELECT * FROM Customers
+                    WHERE Customers.id =  Orders.customerid);
+
+
+-- Question 197 
+-- https://leetcode.com/problems/rising-temperature/
+-- Write an SQL query to find all dates' Id with higher temperatures compared to its previous dates
+DROP TABLE IF EXISTS Weather;
+CREATE TABLE Weather (
+id int, 
+recordDate date, 
+temperature int);
+
+insert into Weather (id, recordDate, temperature) values ('1', '2015-01-01', '10');
+insert into Weather (id, recordDate, temperature) values ('2', '2015-01-02', '25');
+insert into Weather (id, recordDate, temperature) values ('3', '2015-01-03', '20');
+insert into Weather (id, recordDate, temperature) values ('4', '2015-01-04', '30');
+
+SELECT W2.id
+FROM Weather W1
+JOIN Weather W2 ON W1.id = (W2.id-1)
+WHERE W1.temperature < W2.temperature;
+
+
