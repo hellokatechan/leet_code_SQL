@@ -393,4 +393,125 @@ FROM Weather W1
 JOIN Weather W2 ON W1.id = (W2.id-1)
 WHERE W1.temperature < W2.temperature;
 
+-- Question 512
+-- https://programmer.ink/think/leetcode-sql-game-play-analysis.html
+-- Write an SQL query statement to get the date when each player first landed on the platform.
+-- revisit !!!!
+DROP TABLE IF EXISTS player;
+CREATE TABLE player(
+player_id int, 
+device_id int, 
+event_date date,
+games_played int);
+
+insert into player (player_id, device_id, event_date,games_played) values ('1','2','2016-03-01','5');
+insert into player (player_id, device_id, event_date,games_played) values ('1','2','2016-05-02','6');
+insert into player (player_id, device_id, event_date,games_played) values ('2','3','2017-06-25','1');
+insert into player (player_id, device_id, event_date,games_played) values ('3','1','2016-03-02','0');
+insert into player (player_id, device_id, event_date,games_played) values ('3','4','2018-07-03','5');
+
+select a.player_id, a.device_id
+from player a JOIN
+(select player_id, min(event_date) 'first_login'
+from player group by player_id) t
+ON a.player_id=t.player_id and a.event_date = t.first_login;
+
+-- Question 577
+-- https://www.datageekinme.com/general/leetcode/leetcode-sql-577-employee-bonus/
+-- Select all employee’s name and bonus whose bonus is < 1000.
+DROP TABLE IF EXISTS Employee;
+Create table Employee (
+    EmpId int, 
+    Name varchar(255), 
+    Supervisor int, 
+    Salary int);
+
+DROP TABLE IF EXISTS Bonus;
+Create table Bonus (
+    EmpId int, 
+    Bonus int);
+
+insert into Employee (EmpId, Name, Supervisor, Salary) 
+    values ('3', 'Brad', null, '4000');
+insert into Employee (EmpId, Name, Supervisor, Salary) 
+    values ('1', 'John', '3', '1000');
+insert into Employee (EmpId, Name, Supervisor, Salary) 
+    values ('2', 'Dan', '3', '2000');
+insert into Employee (EmpId, Name, Supervisor, Salary) 
+    values ('4', 'Thomas', '3', '4000');
+
+
+insert into Bonus (EmpId, Bonus) 
+    values ('2', '500');
+insert into Bonus (EmpId, Bonus) 
+    values ('4', '2000');
+
+SELECT Name, Bonus
+FROM Employee
+LEFT JOIN Bonus ON Employee.empid = Bonus.empid
+WHERE Bonus IS NULL OR Bonus <= 500;
+
+-- Question 607
+-- https://leetcode.com/problems/sales-person/
+-- Write an SQL query to report the names of all the salespersons who did not have any orders related to the company with the name "RED".
+-- Revisit !!! 
+DROP TABLE IF EXISTS SalesPerson;
+Create table SalesPerson (
+sales_id int, 
+name varchar(255), 
+salary int, 
+commission_rate int, 
+hire_date date);
+
+DROP TABLE IF EXISTS Company; 
+Create table Company (
+com_id int, 
+name varchar(255), 
+city varchar(255));
+
+DROP TABLE IF EXISTS Orders;
+Create table Orders (
+order_id int, 
+order_date date, 
+com_id int, 
+sales_id int, 
+amount int);
+
+insert into SalesPerson (sales_id, name, salary, commission_rate, hire_date) values ('1', 'John', '100000', '6', '2016-04-01');
+insert into SalesPerson (sales_id, name, salary, commission_rate, hire_date) values ('2', 'Amy', '12000', '5', '2010-05-01');
+insert into SalesPerson (sales_id, name, salary, commission_rate, hire_date) values ('3', 'Mark', '65000', '12', '2008-12-25');
+insert into SalesPerson (sales_id, name, salary, commission_rate, hire_date) values ('4', 'Pam', '25000', '25', '2005-01-01');
+insert into SalesPerson (sales_id, name, salary, commission_rate, hire_date) values ('5', 'Alex', '5000', '10', '2007-02-03');
+
+insert into Company (com_id, name, city) values ('1', 'RED', 'Boston');
+insert into Company (com_id, name, city) values ('2', 'ORANGE', 'New York');
+insert into Company (com_id, name, city) values ('3', 'YELLOW', 'Boston');
+insert into Company (com_id, name, city) values ('4', 'GREEN', 'Austin');
+
+insert into Orders (order_id, order_date, com_id, sales_id, amount) values ('1', '2014-01-01', '3', '4', '10000');
+insert into Orders (order_id, order_date, com_id, sales_id, amount) values ('2', '2014-02-01', '4', '5', '5000');
+insert into Orders (order_id, order_date, com_id, sales_id, amount) values ('3', '2014-03-01', '1', '1', '50000');
+insert into Orders (order_id, order_date, com_id, sales_id, amount) values ('4', '2014-04-01', '1', '4', '25000');
+
+SELECT name
+FROM Salesperson
+WHERE Salesperson.sales_id NOT IN (
+SELECT Orders.sales_id
+FROM Orders 
+LEFT JOIN Company ON Orders.com_id = Company.com_id
+WHERE Company.name = 'RED');
+
+-- ATTEMPT 1
+-- SELECT SalesPerson.name
+-- FROM Orders
+-- LEFT JOIN Company ON Orders.com_id = Company.com_id
+-- LEFT JOIN SalesPerson ON Orders.sales_id = SalesPerson.sales_id
+-- WHERE Company.name = 'RED'
+
+-- ATTEMPT 2
+-- SELECT *
+-- FROM Orders
+-- LEFT JOIN Company ON Orders.com_id = Company.com_id
+-- LEFT JOIN SalesPerson ON Orders.sales_id = SalesPerson.sales_id
+-- HAVING NOT Company.name ='RED';
 
