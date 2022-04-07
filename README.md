@@ -25,4 +25,6 @@
 | 181 | [Employees Earning More Than Their Managers](https://leetcode.com/problems/employees-earning-more-than-their-managers/)|Easy|
 | 183 | [Customers Who Never Order](https://leetcode.com/problems/customers-who-never-order/)| Easy|
 | 197 | [Rising Temperature](https://leetcode.com/problems/rising-temperature/)|Easy|
-
+| 512| [Game play analysis II](https://programmer.ink/think/leetcode-sql-game-play-analysis.html)| Easy|
+| 577| [Employee Bonus](https://www.datageekinme.com/general/leetcode/leetcode-sql-577-employee-bonus/)|Easy|
+|607| [Sales Person](https://leetcode.com/problems/sales-person/)|Easy| 
